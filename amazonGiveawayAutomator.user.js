@@ -41,7 +41,7 @@
     GM_setValue("giveawaysEntered", 0)
   }
   if(!GM_getValue("userEmail")) {
-    GM_setValue("userEmail", "your-email-here")
+    GM_setValue("userEmail", "ryanissuccess@gmail.com")
   }
 
   if(!GM_getValue("running")){
@@ -135,6 +135,10 @@
 
   async function processGiveaways() {
     console.log('Processing giveaways');
+    // fallback to refresh if it gets stuck
+    setTimeout(function() {
+        location.reload();
+    }, 30000);
     GM_setValue("processingGiveaways", true)
     let idx = GM_getValue("currentIdx");
     let currentGiveaway = JSON.parse(GM_getValue(`giveaway-${idx}`))
@@ -179,20 +183,18 @@
       // otherwise, enter giveaway immediately
       else {
           if(document.querySelector("#ts_en_enter")){
-            document.querySelector("#ts_en_enter span input").click()
-            console.log('enterGiveaway3');
+            document.querySelector("#ts_en_enter span input").click();
             handleSubmit();
           }
           if(document.querySelector(".boxClickTarget")){
             document.querySelector(".boxClickTarget").click()
             handleSubmit();
           }
-          // TODO: add handler for subscribe giveaways
-          // Currently this clicks on add to cart as well as the subscribe
-          /*if (document.querySelector('input.a-button-input')) {
-              document.querySelector('input.a-button-input').click();
+          // TODO: verify handler for subscribe giveaways
+          if (document.getElementById('submitForm').innerHTML.includes('Subscribe')) {
+              document.getElementById('submitForm').click();
             handleSubmit();
-          }*/
+          }
       }
     }, 1000)
   }
@@ -203,17 +205,6 @@
       if(document.getElementById('title')){
         if(document.getElementById('title').innerHTML.includes('won')){
           // setInterval( () => GM_notification("You just won an Amazon giveaway!", "Amazon Giveway Automator"), 5000)
-          if(!emailed){
-            emailed = true
-            GM_xmlhttpRequest({
-              method: "POST",
-              url: "http://email-sender-213012.appspot.com/hello",
-              data: `email=${GM_getValue("userEmail")}&href=${window.location.href}`,
-              headers: {
-                "Content-Type": "application/x-www-form-urlencoded"
-              },
-            });
-          }
           document.getElementById('lu_co_ship_box-announce').click()
           processGiveaways()
           return
@@ -226,10 +217,6 @@
   }
 
   function main() {
-    // fallback to refresh if it gets stuck
-    setTimeout(function() {
-        location.reload();
-    }, 30000);
     if(GM_getValue("running")){
       if(isSignIn){
         setInterval(() => {
