@@ -163,7 +163,7 @@
     GM_setValue("giveawaysEntered", numEntered)
     numEntered = GM_getValue("currentSessionGiveawaysEntered")
     numEntered += 1
-    GM_setValue("currentSessionGiveawaysEntered", numEntered)
+    GM_setValue("currentSessionGiveawaysEntered", numEntered);
 
     setInterval( () => {
       // if giveaway has video requirement, click the continue entry button first
@@ -191,8 +191,14 @@
             handleSubmit();
           }
           // TODO: verify handler for subscribe giveaways
-          if (document.getElementById('submitForm').innerHTML.includes('Subscribe')) {
-              document.getElementById('submitForm').click();
+          if (document.getElementById('submitForm')) {
+            if (document.getElementById('submitForm').innerHTML.includes('Subscribe')) {
+                document.getElementById('submitForm').click();
+                handleSubmit();
+            }
+          }
+          // If it's something we've already won, move on
+          if(document.getElementById('title')){
             handleSubmit();
           }
       }
@@ -201,11 +207,12 @@
 
   // check page until results show up then continue to next giveaway in queue if not a winner
   function handleSubmit(){
-    let emailed = false
       if(document.getElementById('title')){
         if(document.getElementById('title').innerHTML.includes('won')){
           // setInterval( () => GM_notification("You just won an Amazon giveaway!", "Amazon Giveway Automator"), 5000)
-          document.getElementById('lu_co_ship_box-announce').click()
+          if (document.getElementById('lu_co_ship_box-announce')) {
+            document.getElementById('lu_co_ship_box-announce').click()
+          }
           processGiveaways()
           return
         } else {
@@ -260,12 +267,26 @@
           processGiveaways()
         }
         // handle giveaways with video requirement
-        else if (document.getElementById("giveaway-youtube-video-watch-text") || document.getElementById("giveaway-video-watch-text")){
+        else if (document.getElementById("giveaway-youtube-video-watch-text") || document.getElementById("giveaway-video-watch-text") || document.getElementById('enter-youtube-video-button')){
           if(GM_getValue("allowVideos")){
+            // Mute a singular HTML5 element
+            function muteMe(elem) {
+              elem.muted = true;
+            }
+            // Try to mute all video and audio elements on the page
+            function mutePage() {
+              document.querySelectorAll("video").forEach( video => muteMe(video) );
+              document.querySelectorAll("audio").forEach( audio => muteMe(audio) );
+            }
             window.addEventListener('load', () => {
-              if(document.querySelector(".continue_button_inner")){
+              if(document.querySelector(".continue_button_inner") || document.querySelector('button.ytp-large-play-button.ytp-button')){
                 if(document.querySelector(".airy-play-toggle-hint.airy-hint.airy-play-hint")){
                   document.querySelector(".airy-play-toggle-hint.airy-hint.airy-play-hint").click()
+                  mutePage();
+                }
+                if (document.querySelector('button.ytp-large-play-button.ytp-button')) {
+                  document.querySelector('button.ytp-large-play-button.ytp-button').click();
+                  mutePage();
                 }
                 setTimeout(enterGiveaway, 15000)
               }
