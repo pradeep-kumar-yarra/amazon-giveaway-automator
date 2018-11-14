@@ -1,8 +1,8 @@
 # Amazon Giveaway Automator
 
 Amazon Giveaway Automator saves you time and energy when trying to win [Amazon Giveaways](https://www.amazon.com/ga/giveaways).
-Forked from and initial code credit to [Ty Gooch](https://github.com/TyGooch/amazon-giveaway-automator).
-He no longer updated it and his current version is broken so I have made a current working version and plan on maintaining it.
+Forked from and initial code credit to [Ty Gooch](https://github.com/TyGooch/amazon-giveaway-automator), 
+and [Ryan Walker](https://github.com/RyanPWalker/amazon-giveaway-automator)
 
 ## System Requirements
 
@@ -14,7 +14,7 @@ Make sure to use the [Google Chrome](https://chrome.google.com/) web browser and
 
 ## Installation
 
-To install Amazon Giveaway Automator, click [here](https://github.com/RyanPWalker/amazon-giveaway-automator/raw/master/amazonGiveawayAutomator.user.js). If Tampermonkey is correctly installed, you will be asked to add the script to your dashboard. Confirm the installation and start winning some giveaways.
+To install Amazon Giveaway Automator, click [here](https://github.com/pradeep-kumar-yarra/amazon-giveaway-automator/blob/master/amazonGiveawayAutomator.user.js). If Tampermonkey is correctly installed, you will be asked to add the script to your dashboard. Confirm the installation and start winning some giveaways.
 
 ## Usage
 
