@@ -3,7 +3,7 @@
 // ==UserScript==
 // @name         Amazon Giveaway Bot
 // @version      1.1
-// @author       Ryan Walker
+// @author       Ryan Walker, Pradeep
 // @updateURL    https://github.com/pradeep-kumar-yarra/amazon-giveaway-automator/raw/master/amazonGiveawayAutomator.user.js
 // @description  Automates Amazon giveaway entries
 // @match        https://www.amazon.com/ga/*
@@ -41,7 +41,7 @@
     GM_setValue("giveawaysEntered", 0)
   }
   if(!GM_getValue("userEmail")) {
-    GM_setValue("userEmail", "ryanissuccess@gmail.com")
+    GM_setValue("userEmail", "youremail@gmail.com")
   }
 
   if(!GM_getValue("running")){
