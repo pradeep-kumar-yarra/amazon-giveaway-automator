@@ -4,7 +4,7 @@
 // @name         Amazon Giveaway Bot
 // @version      1.1
 // @author       Ryan Walker
-// @updateURL    https://github.com/RyanPWalker/amazon-giveaway-automator/raw/master/amazonGiveawayAutomator.user.js
+// @updateURL    https://github.com/pradeep-kumar-yarra/amazon-giveaway-automator/raw/master/amazonGiveawayAutomator.user.js
 // @description  Automates Amazon giveaway entries
 // @match        https://www.amazon.com/ga/*
 // @match        https://www.amazon.com/ap/signin*
