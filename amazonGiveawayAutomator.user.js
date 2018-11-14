@@ -180,6 +180,10 @@
       else if (document.getElementById('en_fo_follow-announce')) {
         processGiveaways()
       }
+      // don't enter givaways needs newsletter subscription
+      else if (document.getElementById('ne_sub_subscribe-announce')) {
+        processGiveaways()
+      }
       // otherwise, enter giveaway immediately
       else {
           if(document.querySelector("#ts_en_enter")){
