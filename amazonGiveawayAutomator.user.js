@@ -181,7 +181,7 @@
         processGiveaways()
       }
       // don't enter givaways needs newsletter subscription
-      else if (document.getElementById('ne_sub_subscribe-announce')) {
+      else if (document.getElementById('ne_sub_subscribe-announce') || document.getElementById('ts_en_ns_subscribe-announce')) {
         processGiveaways()
       }
       // otherwise, enter giveaway immediately
